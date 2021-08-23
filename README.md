@@ -1,4 +1,21 @@
 # Getting Started with Create React App
+##仕様
+
+言語：typescript
+
+ルートの設定：react-router
+
+CSS：styledーcomponents
+
+Reacthooksを用いて記述する。classーcomponentsは基本使わない。
+
+起動するときはyarn start実行
+
+##ヘルプ
+
+styled-componentsが使えない
+yarn add styled-componentsをやってみる
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
