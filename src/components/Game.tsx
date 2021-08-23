@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AnswersList from "./AnswersList";
 import{ Link } from 'react-router-dom'; 
+import styled from "styled-components";
 
 const initialQuestWord: string[] = ["京都大学", "レッドブル"];
 const maxWord:number = 5;
