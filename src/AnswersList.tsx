@@ -5,7 +5,7 @@ const array = Array.from({length: 5}, (v, k) => k);
 const AnswersList = () =>{
     const answerRows = array.map((i) => {
         return(
-            <Answer index = {i}/>
+            <Answer index = {i} key={i}/>
         )
     });
 

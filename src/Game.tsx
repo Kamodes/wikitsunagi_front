@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AnswersList from "./AnswersList";
 import{ Link } from 'react-router-dom'; 
 
 const initialQuestWord: string[] = ["京都大学", "レッドブル"];
 const maxWord:number = 5;
+
+const url = "https://random-word-api.herokuapp.com/word?number=2";
+
 const Game = () =>{
     const [questWord, setQuestWord] = useState(initialQuestWord);
     return(
