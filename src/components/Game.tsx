@@ -2,20 +2,26 @@ import React, { useEffect, useState } from "react";
 import AnswersList from "./AnswersList";
 import{ Link } from 'react-router-dom'; 
 import styled from "styled-components";
+import { type } from "os";
 
-const initialQuestWord: string[] = ["京都大学", "レッドブル"];
 const maxWord:number = 5;
 
-const url = "https://random-word-api.herokuapp.com/word?number=2";
+type GameProps = {
+    questWords: string[],
+};
 
-const Game = () =>{
-    const [questWord, setQuestWord] = useState(initialQuestWord);
+const TitleStyle = styled.h1`
+    color: red;
+    font-size: 60px;
+`;
+
+const Game = (Prop: GameProps) =>{
     return(
         <>
         <div>
-            <h1>メイン画面</h1>
+            <TitleStyle>ゲーム開始！</TitleStyle>
             <div>
-                問題：{questWord[0]}　から　{questWord[1]} までを {maxWord} 回でつなげろ
+                問題：{Prop.questWords[0]}　から　{Prop.questWords[1]} までを {maxWord} 回でつなげろ
             </div>
             <AnswersList/>
             <Link to="/result">解答</Link>
