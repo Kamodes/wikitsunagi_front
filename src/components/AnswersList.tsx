@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { TextField, Grid } from "@material-ui/core";
+import { TextField, Grid, Box } from "@material-ui/core";
 
 type AnswerType = {
   first: string;
@@ -11,9 +11,16 @@ type AnswerType = {
   fifth: string;
 };
 
-const TextFieldStyle = styled.section`
-  width: 300;
+const StyledTextField = styled(TextField)`
+  border: 0;
+  color: white;
+  height: 48px;
+  padding: 0 30px;
+  width: 50%;
+  margin 0 auto;
 `;
+
+// const BoxStyle = styled(Box)``;
 
 const AnswersList = () => {
   const { register, handleSubmit } = useForm<AnswerType>({
@@ -26,31 +33,48 @@ const AnswersList = () => {
   return (
     <>
       <form onSubmit={handleSubmit(handleOnSubmit)}>
-        <TextFieldStyle>
-          <Grid container direction="column" spacing={4}>
+        <Grid container spacing={3} justifyContent="center">
+          <Grid item>
             <TextField
-              variant="outlined"
+              label="１つ目の単語"
               placeholder="1番目の回答を入力してください"
               {...register("first")}
-            ></TextField>
-            <TextField
-              placeholder="2番目の回答を入力してください"
-              {...register("second")}
-            ></TextField>
-            <TextField
-              placeholder="3番目の回答を入力してください"
-              {...register("third")}
-            ></TextField>
-            <TextField
-              placeholder="4番目の回答を入力してください"
-              {...register("forth")}
-            ></TextField>
-            <TextField
-              placeholder="5番目の回答を入力してください"
-              {...register("fifth")}
+              variant="outlined"
             ></TextField>
           </Grid>
-        </TextFieldStyle>
+          <Grid item>
+            <TextField
+              label="2つ目の単語"
+              placeholder="2番目の回答を入力してください"
+              {...register("second")}
+              variant="outlined"
+            ></TextField>
+          </Grid>
+          <Grid item>
+            <TextField
+              label="3つ目の単語"
+              placeholder="3番目の回答を入力してください"
+              {...register("third")}
+              variant="outlined"
+            ></TextField>
+          </Grid>
+          <Grid item>
+            <TextField
+              label="4つ目の単語"
+              placeholder="4番目の回答を入力してください"
+              {...register("forth")}
+              variant="outlined"
+            ></TextField>
+          </Grid>
+          <Grid item>
+            <TextField
+              label="5つ目の単語"
+              placeholder="5番目の回答を入力してください"
+              {...register("fifth")}
+              variant="outlined"
+            ></TextField>
+          </Grid>
+        </Grid>
       </form>
     </>
   );

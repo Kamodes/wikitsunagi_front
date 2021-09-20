@@ -19,7 +19,7 @@ function App() {
             path="/Main"
             render={() => <Game questWords={questWord} maxWord={5} />}
           />
-          <Route exact path="/Result" component={Result} />
+          <Route exact path="/Result" render={() => <Result judge={true} />} />
         </div>
       </Router>
     </div>
