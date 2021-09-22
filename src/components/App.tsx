@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Game from "./Game";
 import Title from "./Title";
 import Result from "./Result";
+import ButtonAppBar from "./modules/ButtonAppBar";
 
 //ここのinitialの時点でAPIからデータ取ってきても良いと思う
 const initialQuestWord: string[] = ["京都大学", "レッドブル"];
@@ -11,6 +12,7 @@ function App() {
   const [questWord, setQuestWord] = useState(initialQuestWord);
   return (
     <div className="App">
+      <ButtonAppBar />
       <Router>
         <div>
           <Route exact path="/" component={Title} />

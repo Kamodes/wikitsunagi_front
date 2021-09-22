@@ -12,20 +12,30 @@ type GameProps = {
 const TitleStyle = styled.h1`
   color: red;
   font-size: 60px;
+  margin-bottom: 20px;
+`;
+
+const StyledLink = styled.section`
+  margin-top: 30px;
+`;
+
+const StyledQuestion = styled.section`
+  margin: 30px;
 `;
 
 const Game = (Prop: GameProps) => {
   return (
     <>
-      <div>
-        <TitleStyle>ゲーム開始！</TitleStyle>
-        <div>
-          問題：{Prop.questWords[0]}　から　{Prop.questWords[1]} までを{" "}
-          {Prop.maxWord} 回でつなげろ
-        </div>
-        <AnswersList />
+      <TitleStyle>ゲーム開始！</TitleStyle>
+      <StyledQuestion>
+        問題：{Prop.questWords[0]}　から　{Prop.questWords[1]} までを{" "}
+        {Prop.maxWord} 回でつなげろ
+      </StyledQuestion>
+
+      <AnswersList />
+      <StyledLink>
         <Link to="/result">解答</Link>
-      </div>
+      </StyledLink>
     </>
   );
 };

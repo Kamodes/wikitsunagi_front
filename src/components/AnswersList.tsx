@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { TextField, Grid, Box } from "@material-ui/core";
+import { TextField, Grid, Button } from "@material-ui/core";
 
 type AnswerType = {
   first: string;
@@ -10,15 +10,6 @@ type AnswerType = {
   forth: string;
   fifth: string;
 };
-
-const StyledTextField = styled(TextField)`
-  border: 0;
-  color: white;
-  height: 48px;
-  padding: 0 30px;
-  width: 50%;
-  margin 0 auto;
-`;
 
 // const BoxStyle = styled(Box)``;
 
@@ -33,7 +24,7 @@ const AnswersList = () => {
   return (
     <>
       <form onSubmit={handleSubmit(handleOnSubmit)}>
-        <Grid container spacing={3} justifyContent="center">
+        <Grid container spacing={3} justifyContent="center" direction="column">
           <Grid item>
             <TextField
               label="１つ目の単語"
@@ -74,6 +65,7 @@ const AnswersList = () => {
               variant="outlined"
             ></TextField>
           </Grid>
+          <Button type="submit">回答を確定</Button>
         </Grid>
       </form>
     </>
