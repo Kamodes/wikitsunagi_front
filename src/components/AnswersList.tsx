@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TextField, Grid, Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 type AnswerType = {
   first: string;
@@ -28,7 +29,7 @@ const AnswersList = () => {
           <Grid item>
             <TextField
               label="１つ目の単語"
-              placeholder="1番目の回答を入力してください"
+              placeholder="1番目の解答を入力してください"
               {...register("first")}
               variant="outlined"
             ></TextField>
@@ -36,7 +37,7 @@ const AnswersList = () => {
           <Grid item>
             <TextField
               label="2つ目の単語"
-              placeholder="2番目の回答を入力してください"
+              placeholder="2番目の解答を入力してください"
               {...register("second")}
               variant="outlined"
             ></TextField>
@@ -44,7 +45,7 @@ const AnswersList = () => {
           <Grid item>
             <TextField
               label="3つ目の単語"
-              placeholder="3番目の回答を入力してください"
+              placeholder="3番目の解答を入力してください"
               {...register("third")}
               variant="outlined"
             ></TextField>
@@ -52,7 +53,7 @@ const AnswersList = () => {
           <Grid item>
             <TextField
               label="4つ目の単語"
-              placeholder="4番目の回答を入力してください"
+              placeholder="4番目の解答を入力してください"
               {...register("forth")}
               variant="outlined"
             ></TextField>
@@ -60,12 +61,14 @@ const AnswersList = () => {
           <Grid item>
             <TextField
               label="5つ目の単語"
-              placeholder="5番目の回答を入力してください"
+              placeholder="5番目の解答を入力してください"
               {...register("fifth")}
               variant="outlined"
             ></TextField>
           </Grid>
-          <Button type="submit">回答を確定</Button>
+          <Link to="/result">
+            <Button type="submit">解答</Button>
+          </Link>
         </Grid>
       </form>
     </>

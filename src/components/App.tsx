@@ -12,7 +12,7 @@ function App() {
   const [questWord, setQuestWord] = useState(initialQuestWord);
   return (
     <div className="App">
-      <ButtonAppBar />
+      {/* <ButtonAppBar /> */}
       <Router>
         <div>
           <Route exact path="/" component={Title} />

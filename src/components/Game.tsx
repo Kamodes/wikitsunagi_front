@@ -33,9 +33,6 @@ const Game = (Prop: GameProps) => {
       </StyledQuestion>
 
       <AnswersList />
-      <StyledLink>
-        <Link to="/result">解答</Link>
-      </StyledLink>
     </>
   );
 };
