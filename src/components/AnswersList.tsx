@@ -40,51 +40,83 @@ const AnswersList = () => {
   return (
     <>
       <form onSubmit={handleSubmit(handleOnSubmit)}>
-        <Grid container spacing={6} justifyContent="center" direction="column">
+        <Grid container spacing={2} justifyContent="center" direction="column">
           <Grid item>
-            <TextField
-              label="１つ目の単語"
-              placeholder="1番目の解答を入力してください"
-              {...register("first")}
-              variant="outlined"
-              style={FormStyle}
-            ></TextField>
+            <Grid container direction="column" spacing={2}>
+              <Grid item>
+                <TextField
+                  label="１つ目の単語"
+                  placeholder="1番目の解答を入力してください"
+                  {...register("first")}
+                  variant="outlined"
+                  style={FormStyle}
+                ></TextField>
+              </Grid>
+              <Grid item>
+                <i className="fas fa-arrow-down fa-2x"></i>
+              </Grid>
+            </Grid>
           </Grid>
           <Grid item>
-            <TextField
-              label="2つ目の単語"
-              placeholder="2番目の解答を入力してください"
-              {...register("second")}
-              variant="outlined"
-              style={FormStyle}
-            ></TextField>
+            <Grid container direction="column" spacing={2}>
+              <Grid item>
+                <TextField
+                  label="2つ目の単語"
+                  placeholder="2番目の解答を入力してください"
+                  {...register("second")}
+                  variant="outlined"
+                  style={FormStyle}
+                ></TextField>
+              </Grid>
+              <Grid item>
+                <i className="fas fa-arrow-down fa-2x"></i>
+              </Grid>
+            </Grid>
           </Grid>
           <Grid item>
-            <TextField
-              label="3つ目の単語"
-              placeholder="3番目の解答を入力してください"
-              {...register("third")}
-              variant="outlined"
-              style={FormStyle}
-            ></TextField>
+            <Grid container direction="column" spacing={2}>
+              <Grid item>
+                <TextField
+                  label="3つ目の単語"
+                  placeholder="3番目の解答を入力してください"
+                  {...register("third")}
+                  variant="outlined"
+                  style={FormStyle}
+                ></TextField>
+              </Grid>
+              <Grid item>
+                <i className="fas fa-arrow-down fa-2x"></i>
+              </Grid>
+            </Grid>
           </Grid>
           <Grid item>
-            <TextField
-              label="4つ目の単語"
-              placeholder="4番目の解答を入力してください"
-              {...register("forth")}
-              variant="outlined"
-              style={FormStyle}
-            ></TextField>
+            <Grid container direction="column" spacing={2}>
+              <Grid item>
+                <TextField
+                  label="4つ目の単語"
+                  placeholder="4番目の解答を入力してください"
+                  {...register("forth")}
+                  variant="outlined"
+                  style={FormStyle}
+                ></TextField>
+              </Grid>
+              <Grid item>
+                <i className="fas fa-arrow-down fa-2x"></i>
+              </Grid>
+            </Grid>
           </Grid>
           <Grid item>
-            <TextField
-              label="5つ目の単語"
-              placeholder="5番目の解答を入力してください"
-              {...register("fifth")}
-              variant="outlined"
-              style={FormStyle}
-            ></TextField>
+            <Grid container direction="column" spacing={2}>
+              <Grid item>
+                <TextField
+                  label="5つ目の単語"
+                  placeholder="5番目の解答を入力してください"
+                  {...register("fifth")}
+                  variant="outlined"
+                  style={FormStyle}
+                ></TextField>
+              </Grid>
+            </Grid>
           </Grid>
           <Grid item>
             <Link to="/result">

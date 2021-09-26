@@ -18,6 +18,10 @@ const StyledFailed = styled.h1`
   color: blue;
 `;
 
+const StyledModel = styled.p`
+  font-size: 30px;
+`;
+
 const Result = (props: ResultProps) => {
   const judge = props.judge;
   const model = props.modelAnswer;
@@ -25,6 +29,21 @@ const Result = (props: ResultProps) => {
     return (
       <>
         <StyledSuccess>成功</StyledSuccess>
+        <StyledModel>解答例</StyledModel>
+        <Grid container justify="center" direction="column" spacing={5}>
+          <Grid item>{model[0]}</Grid>
+          <Grid item>{model[1]}</Grid>
+          <Grid item>{model[2]}</Grid>
+          <Grid item>{model[3]}</Grid>
+          <Grid item>{model[4]}</Grid>
+          <Grid item>
+            <Link to="/">
+              <Button variant="contained" size="large">
+                タイトルへ
+              </Button>
+            </Link>
+          </Grid>
+        </Grid>
         <Link to="/">
           <Button variant="contained">タイトルへ</Button>
         </Link>
@@ -34,6 +53,7 @@ const Result = (props: ResultProps) => {
     return (
       <>
         <StyledFailed>失敗</StyledFailed>
+        <StyledModel>解答例</StyledModel>
         <Grid container justify="center" direction="column" spacing={5}>
           <Grid item>{model[0]}</Grid>
           <Grid item>{model[1]}</Grid>
