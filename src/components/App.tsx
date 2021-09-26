@@ -8,12 +8,19 @@ import ButtonAppBar from "./modules/ButtonAppBar";
 
 //ここのinitialの時点でAPIからデータ取ってきても良いと思う
 const initialQuestWord: string[] = ["京都大学", "レッドブル"];
+const initialModelAnswer: string[] = [
+  "京都大学",
+  "大分県",
+  "島根県",
+  "島根市",
+  "卑弥呼",
+];
 function App() {
   const [questWord, setQuestWord] = useState(initialQuestWord);
   return (
     <div className="App">
-      {/* <ButtonAppBar /> */}
       <Router>
+        <ButtonAppBar />
         <div>
           <Route exact path="/" component={Title} />
           <Route
@@ -21,7 +28,13 @@ function App() {
             path="/Main"
             render={() => <Game questWords={questWord} maxWord={5} />}
           />
-          <Route exact path="/Result" render={() => <Result judge={true} />} />
+          <Route
+            exact
+            path="/Result"
+            render={() => (
+              <Result judge={false} modelAnswer={initialModelAnswer} />
+            )}
+          />
         </div>
       </Router>
     </div>

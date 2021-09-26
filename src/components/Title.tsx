@@ -1,29 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Button, Grid } from "@material-ui/core";
-import { CSSProperties } from "@material-ui/core/styles/withStyles";
+import { Button } from "@material-ui/core";
 
 const Wrapper = styled.section`
   padding-top: 4px;
   width: 100vw;
   height: 100vh;
-  background: darkgray;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Wikipedia-logo-v2-ja.svg/1200px-Wikipedia-logo-v2-ja.svg.png");
   position: relative;
 `;
+
+// background-image: -webkit-gradient(
+//   linear,
+//   right top,
+//   left top,
+//   from(#9be15d),
+//   to(#00e3ae)
+// );
+// background-image: -webkit-linear-gradient(right, #9be15d 0%, #00e3ae 100%);
+// background-image: linear-gradient(to left, #9be15d 0%, #00e3ae 100%);
 
 const TitleStyle = styled.h1`
   color: #fff;
   border-radius: 100vh;
-  background-image: -webkit-gradient(
-    linear,
-    right top,
-    left top,
-    from(#9be15d),
-    to(#00e3ae)
-  );
-  background-image: -webkit-linear-gradient(right, #9be15d 0%, #00e3ae 100%);
-  background-image: linear-gradient(to left, #9be15d 0%, #00e3ae 100%);
+  background-color: black;
   font-size: 100px;
   position: absolute;
   height: 150px;
@@ -46,7 +47,7 @@ const style: React.CSSProperties = {
   margin: "0 auto",
   fontSize: "40px",
   borderRadius: "20px",
-  backgroundColor: "green",
+  backgroundColor: "black",
 };
 
 const Title = () => {

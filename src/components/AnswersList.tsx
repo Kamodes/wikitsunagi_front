@@ -21,8 +21,8 @@ const FormStyle: React.CSSProperties = {
 };
 
 const ButtonStyle: React.CSSProperties = {
-  width: "10em",
-  height: "5em",
+  width: "7em",
+  height: "3em",
   backgroundColor: "blue",
   color: "white",
   fontSize: "20px",
@@ -40,7 +40,7 @@ const AnswersList = () => {
   return (
     <>
       <form onSubmit={handleSubmit(handleOnSubmit)}>
-        <Grid container spacing={5} justifyContent="center" direction="column">
+        <Grid container spacing={6} justifyContent="center" direction="column">
           <Grid item>
             <TextField
               label="１つ目の単語"
