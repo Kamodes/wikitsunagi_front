@@ -1,20 +1,23 @@
 # Getting Started with Create React App
+
+実行するときは.env ファイルを wikitsunagi_front 直下におきラインで共有されている中身を記述すること。
+
 ##仕様
 
 言語：typescript
 
 ルートの設定：react-router
 
-CSS：styledーcomponents
+CSS：styled ー components
 
-Reacthooksを用いて記述する。classーcomponentsは基本使わない。
+Reacthooks を用いて記述する。class ー components は基本使わない。
 
-起動するときはyarn start実行
+起動するときは yarn start 実行
 
 ##ヘルプ
 
-styled-componentsが使えない
-yarn add styled-componentsをやってみる
+styled-components が使えない
+yarn add styled-components をやってみる
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
