@@ -19,8 +19,19 @@ const StyledLink = styled.section`
   margin-top: 30px;
 `;
 
+const StyledAnswerCount = styled.span`
+  font-size: 60px;
+  color: red;
+`;
+
+const StyledWord = styled.span`
+  font-size: 50px;
+  color: red;
+`;
+
 const StyledQuestion = styled.section`
   margin: 30px;
+  font-size: 30px;
 `;
 
 const Game = (Prop: GameProps) => {
@@ -28,10 +39,11 @@ const Game = (Prop: GameProps) => {
     <>
       <TitleStyle>ゲーム開始！</TitleStyle>
       <StyledQuestion>
-        問題：{Prop.questWords[0]}　から　{Prop.questWords[1]} までを{" "}
-        {Prop.maxWord} 回でつなげろ
+        問題：<StyledWord>{Prop.questWords[0]}</StyledWord>　から　
+        <StyledWord>{Prop.questWords[1]} </StyledWord>までを{" "}
+        <StyledAnswerCount>{Prop.maxWord} </StyledAnswerCount>
+        回でつなげろ
       </StyledQuestion>
-
       <AnswersList />
     </>
   );

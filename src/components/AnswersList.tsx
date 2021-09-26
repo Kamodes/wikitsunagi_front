@@ -12,7 +12,22 @@ type AnswerType = {
   fifth: string;
 };
 
-// const BoxStyle = styled(Box)``;
+const StyledButton = styled(Button)`
+  border-radius: 30px;
+`;
+
+const FormStyle: React.CSSProperties = {
+  width: "18em",
+};
+
+const ButtonStyle: React.CSSProperties = {
+  width: "10em",
+  height: "5em",
+  backgroundColor: "blue",
+  color: "white",
+  fontSize: "20px",
+  borderRadius: "20px",
+};
 
 const AnswersList = () => {
   const { register, handleSubmit } = useForm<AnswerType>({
@@ -25,13 +40,14 @@ const AnswersList = () => {
   return (
     <>
       <form onSubmit={handleSubmit(handleOnSubmit)}>
-        <Grid container spacing={3} justifyContent="center" direction="column">
+        <Grid container spacing={5} justifyContent="center" direction="column">
           <Grid item>
             <TextField
               label="１つ目の単語"
               placeholder="1番目の解答を入力してください"
               {...register("first")}
               variant="outlined"
+              style={FormStyle}
             ></TextField>
           </Grid>
           <Grid item>
@@ -40,6 +56,7 @@ const AnswersList = () => {
               placeholder="2番目の解答を入力してください"
               {...register("second")}
               variant="outlined"
+              style={FormStyle}
             ></TextField>
           </Grid>
           <Grid item>
@@ -48,6 +65,7 @@ const AnswersList = () => {
               placeholder="3番目の解答を入力してください"
               {...register("third")}
               variant="outlined"
+              style={FormStyle}
             ></TextField>
           </Grid>
           <Grid item>
@@ -56,6 +74,7 @@ const AnswersList = () => {
               placeholder="4番目の解答を入力してください"
               {...register("forth")}
               variant="outlined"
+              style={FormStyle}
             ></TextField>
           </Grid>
           <Grid item>
@@ -64,11 +83,22 @@ const AnswersList = () => {
               placeholder="5番目の解答を入力してください"
               {...register("fifth")}
               variant="outlined"
+              style={FormStyle}
             ></TextField>
           </Grid>
-          <Link to="/result">
-            <Button type="submit">解答</Button>
-          </Link>
+          <Grid item>
+            <Link to="/result">
+              <StyledButton
+                type="submit"
+                variant="contained"
+                className="AnswerButton"
+                size="large"
+                style={ButtonStyle}
+              >
+                解答
+              </StyledButton>
+            </Link>
+          </Grid>
         </Grid>
       </form>
     </>

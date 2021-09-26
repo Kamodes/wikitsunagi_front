@@ -41,11 +41,12 @@ const style: React.CSSProperties = {
   bottom: "0",
   right: "0",
   left: "0",
-  height: "10em",
-  width: "15em",
+  height: "3em",
+  width: "8em",
   margin: "0 auto",
-  fontSize: "25px",
+  fontSize: "40px",
   borderRadius: "20px",
+  backgroundColor: "green",
 };
 
 const Title = () => {
@@ -60,7 +61,7 @@ const Title = () => {
             size="large"
             color="primary"
           >
-            次へ
+            スタート！
           </Button>
         </Link>
       </Wrapper>
