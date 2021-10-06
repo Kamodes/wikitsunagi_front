@@ -2,7 +2,7 @@
 
 実行するときは.env ファイルを wikitsunagi_front 直下におきラインで共有されている中身を記述すること。
 
-##仕様
+## 仕様
 
 言語：typescript
 
@@ -14,7 +14,7 @@ Reacthooks を用いて記述する。class ー components は基本使わない
 
 起動するときは yarn start 実行
 
-##ヘルプ
+## ヘルプ
 
 styled-components が使えない
 yarn add styled-components をやってみる
