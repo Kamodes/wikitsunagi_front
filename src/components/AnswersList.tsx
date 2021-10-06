@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TextField, Grid, Button } from "@material-ui/core";
@@ -10,6 +10,10 @@ type AnswerType = {
   third: string;
   forth: string;
   fifth: string;
+};
+
+type AnswerListProps = {
+  handleAnswerChange: (data: AnswerType) => void;
 };
 
 const StyledButton = styled(Button)`
@@ -27,20 +31,25 @@ const ButtonStyle: React.CSSProperties = {
   color: "white",
   fontSize: "20px",
   borderRadius: "20px",
+  marginBottom: "20px",
 };
 
-const AnswersList = () => {
-  const { register, handleSubmit } = useForm<AnswerType>({
+const AnswersList = (Prop: AnswerListProps) => {
+  const { register, handleSubmit, watch } = useForm<AnswerType>({
     mode: "onSubmit",
     reValidateMode: "onChange",
   });
   const handleOnSubmit: SubmitHandler<AnswerType> = (data) => {
+    console.log("start");
     console.log(data);
+    Prop.handleAnswerChange(data);
   };
+
+  console.log(watch());
   return (
     <>
       <form onSubmit={handleSubmit(handleOnSubmit)}>
-        <Grid container spacing={2} justifyContent="center" direction="column">
+        <Grid container spacing={1} justifyContent="center" direction="column">
           <Grid item>
             <Grid container direction="column" spacing={2}>
               <Grid item>
@@ -50,6 +59,7 @@ const AnswersList = () => {
                   {...register("first")}
                   variant="outlined"
                   style={FormStyle}
+                  defaultValue=""
                 ></TextField>
               </Grid>
               <Grid item>
@@ -66,6 +76,7 @@ const AnswersList = () => {
                   {...register("second")}
                   variant="outlined"
                   style={FormStyle}
+                  defaultValue=""
                 ></TextField>
               </Grid>
               <Grid item>
@@ -82,6 +93,7 @@ const AnswersList = () => {
                   {...register("third")}
                   variant="outlined"
                   style={FormStyle}
+                  defaultValue=""
                 ></TextField>
               </Grid>
               <Grid item>
@@ -98,6 +110,7 @@ const AnswersList = () => {
                   {...register("forth")}
                   variant="outlined"
                   style={FormStyle}
+                  defaultValue=""
                 ></TextField>
               </Grid>
               <Grid item>
@@ -119,17 +132,15 @@ const AnswersList = () => {
             </Grid>
           </Grid>
           <Grid item>
-            <Link to="/result">
-              <StyledButton
-                type="submit"
-                variant="contained"
-                className="AnswerButton"
-                size="large"
-                style={ButtonStyle}
-              >
-                解答
-              </StyledButton>
-            </Link>
+            <StyledButton
+              type="submit"
+              variant="contained"
+              className="AnswerButton"
+              size="large"
+              style={ButtonStyle}
+            >
+              解答
+            </StyledButton>
           </Grid>
         </Grid>
       </form>
