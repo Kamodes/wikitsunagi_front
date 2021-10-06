@@ -14,6 +14,7 @@ type AnswerType = {
 
 type AnswerListProps = {
   handleAnswerChange: (data: AnswerType) => void;
+  questWords: string[];
 };
 
 const StyledButton = styled(Button)`
@@ -46,6 +47,7 @@ const AnswersList = (Prop: AnswerListProps) => {
   };
 
   console.log(watch());
+  console.log(Prop.questWords[0]);
   return (
     <>
       <form onSubmit={handleSubmit(handleOnSubmit)}>
@@ -54,12 +56,13 @@ const AnswersList = (Prop: AnswerListProps) => {
             <Grid container direction="column" spacing={2}>
               <Grid item>
                 <TextField
-                  label="１つ目の単語"
-                  placeholder="1番目の解答を入力してください"
                   {...register("first")}
                   variant="outlined"
                   style={FormStyle}
-                  defaultValue=""
+                  defaultValue={Prop.questWords[0]}
+                  InputProps={{
+                    readOnly: true,
+                  }}
                 ></TextField>
               </Grid>
               <Grid item>
@@ -73,10 +76,10 @@ const AnswersList = (Prop: AnswerListProps) => {
                 <TextField
                   label="2つ目の単語"
                   placeholder="2番目の解答を入力してください"
+                  required={true}
                   {...register("second")}
                   variant="outlined"
                   style={FormStyle}
-                  defaultValue=""
                 ></TextField>
               </Grid>
               <Grid item>
@@ -94,6 +97,7 @@ const AnswersList = (Prop: AnswerListProps) => {
                   variant="outlined"
                   style={FormStyle}
                   defaultValue=""
+                  required={true}
                 ></TextField>
               </Grid>
               <Grid item>
@@ -111,6 +115,7 @@ const AnswersList = (Prop: AnswerListProps) => {
                   variant="outlined"
                   style={FormStyle}
                   defaultValue=""
+                  required={true}
                 ></TextField>
               </Grid>
               <Grid item>
@@ -122,11 +127,13 @@ const AnswersList = (Prop: AnswerListProps) => {
             <Grid container direction="column" spacing={2}>
               <Grid item>
                 <TextField
-                  label="5つ目の単語"
-                  placeholder="5番目の解答を入力してください"
                   {...register("fifth")}
                   variant="outlined"
                   style={FormStyle}
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  defaultValue={Prop.questWords[1]}
                 ></TextField>
               </Grid>
             </Grid>

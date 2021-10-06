@@ -22,6 +22,10 @@ const StyledModel = styled.p`
   font-size: 30px;
 `;
 
+const ButtonStyle = styled.section`
+  margin-bottom: 20px;
+`;
+
 const Result = (props: ResultProps) => {
   const judge = props.judge;
   const model = props.modelAnswer;
@@ -38,15 +42,14 @@ const Result = (props: ResultProps) => {
           <Grid item>{model[4]}</Grid>
           <Grid item>
             <Link to="/">
-              <Button variant="contained" size="large">
-                タイトルへ
-              </Button>
+              <ButtonStyle>
+                <Button variant="contained" size="large">
+                  タイトルへ
+                </Button>
+              </ButtonStyle>
             </Link>
           </Grid>
         </Grid>
-        <Link to="/">
-          <Button variant="contained">タイトルへ</Button>
-        </Link>
       </>
     );
   } else {

@@ -40,7 +40,10 @@ const Game = (Prop: GameProps) => {
         <StyledAnswerCount>{Prop.maxWord} </StyledAnswerCount>
         回でつなげろ
       </StyledQuestion>
-      <AnswersList handleAnswerChange={Prop.handleAnswerChange} />
+      <AnswersList
+        handleAnswerChange={Prop.handleAnswerChange}
+        questWords={Prop.questWords}
+      />
     </>
   );
 };

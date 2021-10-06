@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./CSS/App.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Game from "./Game";
 import Title from "./Title";
 import Result from "./Result";
@@ -63,24 +63,26 @@ function App() {
       <Router>
         <ButtonAppBar />
         <div>
-          <Route exact path="/" component={Title} />
-          <Route
-            exact
-            path="/Main"
-            render={() => (
-              <Game
-                questWords={questWord}
-                maxWord={5}
-                handleAnswerChange={handleAnswerChange}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/Result"
-            render={() => <Result judge={judge} modelAnswer={modelAnswer} />}
-          />
-          <Route component={Page404} />
+          <Switch>
+            <Route exact path="/" component={Title} />
+            <Route
+              exact
+              path="/Main"
+              render={() => (
+                <Game
+                  questWords={questWord}
+                  maxWord={5}
+                  handleAnswerChange={handleAnswerChange}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/Result"
+              render={() => <Result judge={judge} modelAnswer={modelAnswer} />}
+            />
+            <Route component={Page404} />
+          </Switch>
         </div>
         <Footer />
       </Router>
