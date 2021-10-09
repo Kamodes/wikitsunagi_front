@@ -10,7 +10,8 @@ import Page404 from "./Page404";
 import axios from "axios";
 
 //ここのinitialの時点でAPIからデータ取ってきても良いと思う
-const initialQuestWord: string[] = ["京都大学", "レッドブル"];
+const initialQuestWord: string[] = ["京都大学", "ギター"];
+
 const initialAnswer: AnswerType = {
   first: "",
   second: "",
@@ -51,7 +52,7 @@ function App() {
     .then(function (response) {
       console.log(response);
       // 受け取ったデータに基づいてjudgeの値を変える
-      setJudge(response['data']);
+      setJudge(Boolean(response['data']));
       // console.log('http://localhost:3000/result/' + questWord[0] + '/' + questWord[1]);
     })
     .catch(function (error) {
@@ -70,6 +71,15 @@ function App() {
     console.log("useEffectOK");
     return () => {};
   }, [answers]);
+
+  axios.get('http://localhost:3000/questions/show/contents?category=computer&date=20211009&num=2')
+  .then(function (response) {
+    console.log(response);
+    setQuestWord(response['data']['contents']);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 
   return (
     <div className="App">
