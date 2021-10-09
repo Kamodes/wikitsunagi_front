@@ -36,8 +36,6 @@ const ButtonStyle: React.CSSProperties = {
 };
 
 const AnswersList = (Prop: AnswerListProps) => {
-  const firstWord = Prop.questWords[0];
-  const lastWord = Prop.questWords[1];
   const history = useHistory();
   const { register, handleSubmit, watch } = useForm<AnswerType>({
     mode: "onSubmit",
@@ -52,7 +50,6 @@ const AnswersList = (Prop: AnswerListProps) => {
   };
   console.log("Prop.questWord = ", Prop.questWords);
 
-  console.log("firstWord = ", firstWord);
   return (
     <>
       <form onSubmit={handleSubmit(handleOnSubmit)}>
@@ -63,7 +60,7 @@ const AnswersList = (Prop: AnswerListProps) => {
                 <TextField
                   variant="outlined"
                   style={FormStyle}
-                  defaultValue={firstWord}
+                  value={Prop.questWords[0]}
                   InputProps={{
                     readOnly: true,
                   }}
@@ -138,7 +135,7 @@ const AnswersList = (Prop: AnswerListProps) => {
                   InputProps={{
                     readOnly: true,
                   }}
-                  defaultValue={lastWord}
+                  value={Prop.questWords[1]}
                 ></TextField>
               </Grid>
             </Grid>
