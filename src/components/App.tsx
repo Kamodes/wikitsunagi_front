@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./CSS/App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useHistory,
+} from "react-router-dom";
 import Game from "./Game";
 import Title from "./Title";
 import Result from "./Result";
@@ -10,7 +15,7 @@ import Page404 from "./Page404";
 import axios from "axios";
 
 //ここのinitialの時点でAPIからデータ取ってきても良いと思う
-const initialQuestWord: string[] = ["京都大学", "レッドブル"];
+const initialQuestWord: string[] = ["京都大学", "ギター"];
 const initialAnswer: AnswerType = {
   first: "",
   second: "",
@@ -33,30 +38,44 @@ type AnswerType = {
   forth: string;
   fifth: string;
 };
+
 function App() {
   const [questWord, setQuestWord] = useState(initialQuestWord);
   const [modelAnswer, setModelAnswer] = useState(initialModelAnswer);
   const [judge, setJudge] = useState(false);
-
   const [answers, setAnswers] = useState(initialAnswer);
   const handleAnswerChange = (data: AnswerType) => {
     setAnswers(data);
   };
 
+  const setQuestion = () => {
+    axios
+      .get(
+        "http://localhost:3000/questions/show/contents?category=computer&date=20211009&num=2"
+      )
+      .then(function (response) {
+        console.log(response);
+        setQuestWord(response["data"]["contents"]);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   useEffect(() => {
     // "ここでanswersをバックエンドに送る";
-    axios.post('http://localhost:3000/questions/verify_answer', {
-      answer: answers
-    })
-    .then(function (response) {
-      console.log(response);
-      // 受け取ったデータに基づいてjudgeの値を変える
-      setJudge(response['data']);
-      // console.log('http://localhost:3000/result/' + questWord[0] + '/' + questWord[1]);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    axios
+      .post("http://localhost:3000/questions/verify_answer", {
+        answer: answers,
+      })
+      .then(function (response) {
+        console.log(response);
+        // 受け取ったデータに基づいてjudgeの値を変える
+        setJudge(Boolean(response["data"]));
+        // console.log('http://localhost:3000/result/' + questWord[0] + '/' + questWord[1]);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     // さらに模範解答を受け取りmodelAnswerに代入する
     // axios.get('http://localhost:3000/result/' + questWord[0] + '/' + questWord[1])
     //   .then(function (response) {
@@ -66,8 +85,7 @@ function App() {
     //   .catch(function (error) {
     //     console.log(error);
     //   });
-    
-    console.log("useEffectOK");
+
     return () => {};
   }, [answers]);
 
@@ -83,7 +101,11 @@ function App() {
         <ButtonAppBar />
         <div>
           <Switch>
-            <Route exact path="/" component={Title} />
+            <Route
+              exact
+              path="/"
+              render={() => <Title setQuestion={setQuestion} />}
+            />
             <Route
               exact
               path="/Main"

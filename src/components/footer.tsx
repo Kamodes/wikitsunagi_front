@@ -9,6 +9,6 @@ const FooterLogo = styled.p`
 `;
 
 const Footer = () => {
-  return <FooterLogo>©️うぃきつなぎ</FooterLogo>;
+  return <FooterLogo>うぃきつなぎ</FooterLogo>;
 };
 export default Footer;

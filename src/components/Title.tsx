@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "@material-ui/core";
+import axios from "axios";
 
 const Wrapper = styled.section`
   padding-top: 4px;
@@ -50,7 +51,7 @@ const style: React.CSSProperties = {
   backgroundColor: "black",
 };
 
-const Title = () => {
+const Title = (prop: any) => {
   return (
     <>
       <Wrapper>
@@ -61,6 +62,7 @@ const Title = () => {
             variant="contained"
             size="large"
             color="primary"
+            onClick={prop.setQuestion}
           >
             スタート！
           </Button>

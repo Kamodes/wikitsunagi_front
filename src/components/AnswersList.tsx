@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TextField, Grid, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 type AnswerType = {
   first: string;
@@ -36,18 +36,23 @@ const ButtonStyle: React.CSSProperties = {
 };
 
 const AnswersList = (Prop: AnswerListProps) => {
+  const firstWord = Prop.questWords[0];
+  const lastWord = Prop.questWords[1];
+  const history = useHistory();
   const { register, handleSubmit, watch } = useForm<AnswerType>({
     mode: "onSubmit",
     reValidateMode: "onChange",
   });
   const handleOnSubmit: SubmitHandler<AnswerType> = (data) => {
-    console.log("start");
     console.log(data);
     Prop.handleAnswerChange(data);
   };
+  const routerChange = () => {
+    //history.push("/Result");
+  };
+  console.log("Prop.questWord = ", Prop.questWords);
 
-  console.log(watch());
-  console.log(Prop.questWords[0]);
+  console.log("firstWord = ", firstWord);
   return (
     <>
       <form onSubmit={handleSubmit(handleOnSubmit)}>
@@ -56,13 +61,13 @@ const AnswersList = (Prop: AnswerListProps) => {
             <Grid container direction="column" spacing={2}>
               <Grid item>
                 <TextField
-                  {...register("first")}
                   variant="outlined"
                   style={FormStyle}
-                  defaultValue={Prop.questWords[0]}
+                  defaultValue={firstWord}
                   InputProps={{
                     readOnly: true,
                   }}
+                  {...register("first")}
                 ></TextField>
               </Grid>
               <Grid item>
@@ -133,7 +138,7 @@ const AnswersList = (Prop: AnswerListProps) => {
                   InputProps={{
                     readOnly: true,
                   }}
-                  defaultValue={Prop.questWords[1]}
+                  defaultValue={lastWord}
                 ></TextField>
               </Grid>
             </Grid>
@@ -145,6 +150,7 @@ const AnswersList = (Prop: AnswerListProps) => {
               className="AnswerButton"
               size="large"
               style={ButtonStyle}
+              onClick={routerChange}
             >
               解答
             </StyledButton>
