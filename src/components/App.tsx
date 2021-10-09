@@ -7,6 +7,7 @@ import Result from "./Result";
 import ButtonAppBar from "./modules/ButtonAppBar";
 import Footer from "./footer";
 import Page404 from "./Page404";
+import axios from "axios";
 
 //ここのinitialの時点でAPIからデータ取ってきても良いと思う
 const initialQuestWord: string[] = ["京都大学", "レッドブル"];
@@ -44,10 +45,28 @@ function App() {
 
   useEffect(() => {
     // "ここでanswersをバックエンドに送る";
-    // 受け取ったデータに基づいてjudgeの値を変える
+    axios.post('http://localhost:3000/questions/verify_answer', {
+      answer: answers
+    })
+    .then(function (response) {
+      console.log(response);
+      // 受け取ったデータに基づいてjudgeの値を変える
+      setJudge(response['data']);
+      // console.log('http://localhost:3000/result/' + questWord[0] + '/' + questWord[1]);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
     // さらに模範解答を受け取りmodelAnswerに代入する
-    setJudge(true);
-    setModelAnswer(["かも", "taka", "koba", "hira", "mura"]);
+    // axios.get('http://localhost:3000/result/' + questWord[0] + '/' + questWord[1])
+    //   .then(function (response) {
+    //     console.log(response);
+    //     setModelAnswer(response['data'])
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+    
     console.log("useEffectOK");
     return () => {};
   }, [answers]);
