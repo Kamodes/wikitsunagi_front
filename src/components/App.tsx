@@ -8,13 +8,13 @@ import {
 } from "react-router-dom";
 import Game from "./Game";
 import Title from "./Title";
+import Loading from "./Loading";
 import Result from "./Result";
 import ButtonAppBar from "./modules/ButtonAppBar";
 import Footer from "./footer";
 import Page404 from "./Page404";
 import axios from "axios";
 
-//ここのinitialの時点でAPIからデータ取ってきても良いと思う
 const initialQuestWord: string[] = ["京都大学", "ギター"];
 const initialAnswer: AnswerType = {
   first: "",
@@ -42,7 +42,7 @@ type AnswerType = {
 function App() {
   const [questWord, setQuestWord] = useState(initialQuestWord);
   const [modelAnswer, setModelAnswer] = useState(initialModelAnswer);
-  const [judge, setJudge] = useState(false);
+  const [judge, setJudge] = useState(true);
   const [answers, setAnswers] = useState(initialAnswer);
   const handleAnswerChange = (data: AnswerType) => {
     setAnswers(data);
@@ -61,21 +61,24 @@ function App() {
         console.log(error);
       });
   };
+
   useEffect(() => {
-    // "ここでanswersをバックエンドに送る";
-    axios
-      .post("http://localhost:3000/questions/verify_answer", {
-        answer: answers,
-      })
-      .then(function (response) {
-        console.log(response);
-        // 受け取ったデータに基づいてjudgeの値を変える
-        setJudge(Boolean(response["data"]));
-        // console.log('http://localhost:3000/result/' + questWord[0] + '/' + questWord[1]);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    console.log(answers);
+    async function getAnswer() {
+      await axios
+        .post("http://localhost:3000/questions/verify_answer", {
+          answer: answers,
+        })
+        .then(function (response) {
+          console.log(response);
+          setJudge(Boolean(response["data"]));
+        })
+        .catch(function (error) {
+          console.log(error);
+          console.log("途中のはず");
+        });
+    }
+    getAnswer();
     // さらに模範解答を受け取りmodelAnswerに代入する
     // axios.get('http://localhost:3000/result/' + questWord[0] + '/' + questWord[1])
     //   .then(function (response) {
@@ -85,7 +88,6 @@ function App() {
     //   .catch(function (error) {
     //     console.log(error);
     //   });
-
     return () => {};
   }, [answers]);
 
@@ -117,6 +119,7 @@ function App() {
                 />
               )}
             />
+            <Route exact path="/Loading" render={() => <Loading />} />
             <Route
               exact
               path="/Result"

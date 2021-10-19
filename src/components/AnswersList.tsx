@@ -42,13 +42,11 @@ const AnswersList = (Prop: AnswerListProps) => {
     reValidateMode: "onChange",
   });
   const handleOnSubmit: SubmitHandler<AnswerType> = (data) => {
-    console.log(data);
+    history.push("/Loading");
+    console.log("loadingになってるぜ");
     Prop.handleAnswerChange(data);
+    history.push("/Result");
   };
-  const routerChange = () => {
-    //history.push("/Result");
-  };
-  console.log("Prop.questWord = ", Prop.questWords);
 
   return (
     <>
@@ -147,7 +145,6 @@ const AnswersList = (Prop: AnswerListProps) => {
               className="AnswerButton"
               size="large"
               style={ButtonStyle}
-              onClick={routerChange}
             >
               解答
             </StyledButton>
