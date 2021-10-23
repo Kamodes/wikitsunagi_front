@@ -5,15 +5,7 @@ import styled from "styled-components";
 type GameProps = {
   questWords: string[];
   maxWord: number;
-  handleAnswerChange: (data: AnswerType) => void;
-};
-
-type AnswerType = {
-  first: string;
-  second: string;
-  third: string;
-  forth: string;
-  fifth: string;
+  handleJudgeChange: (data: boolean) => void;
 };
 
 const StyledAnswerCount = styled.span`
@@ -41,7 +33,7 @@ const Game = (Prop: GameProps) => {
         回でつなげろ
       </StyledQuestion>
       <AnswersList
-        handleAnswerChange={Prop.handleAnswerChange}
+        handleJudgeChange={Prop.handleJudgeChange}
         questWords={Prop.questWords}
       />
     </>

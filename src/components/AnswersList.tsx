@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TextField, Grid, Button } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
 
 type AnswerType = {
   first: string;
@@ -13,7 +14,7 @@ type AnswerType = {
 };
 
 type AnswerListProps = {
-  handleAnswerChange: (data: AnswerType) => void;
+  handleJudgeChange: (data: boolean) => void;
   questWords: string[];
 };
 
@@ -41,11 +42,26 @@ const AnswersList = (Prop: AnswerListProps) => {
     mode: "onSubmit",
     reValidateMode: "onChange",
   });
-  const handleOnSubmit: SubmitHandler<AnswerType> = (data) => {
-    history.push("/Loading");
-    console.log("loadingになってるぜ");
-    Prop.handleAnswerChange(data);
-    history.push("/Result");
+  const handleOnSubmit: SubmitHandler<AnswerType> = async (data) => {
+    console.log("dataは", data);
+    async function getAnswer() {
+      history.push("/Loading");
+      await axios
+        .post("http://localhost:3000/questions/verify_answer", {
+          answer: data,
+        })
+        .then(function (response) {
+          console.log(response);
+          console.log(Boolean(response["data"]));
+          Prop.handleJudgeChange(Boolean(response["data"]));
+        })
+        .catch(function (error) {
+          console.log("エラーだよ");
+          console.log(error);
+        });
+      history.push("/Result");
+    }
+    getAnswer();
   };
 
   return (
