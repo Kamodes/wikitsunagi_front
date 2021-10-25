@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./CSS/App.css";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  useHistory,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Game from "./Game";
 import Title from "./Title";
 import Loading from "./Loading";
@@ -69,7 +64,6 @@ function App() {
               render={() => (
                 <Game
                   questWords={questWord}
-                  maxWord={5}
                   handleJudgeChange={handleJudgeChange}
                 />
               )}

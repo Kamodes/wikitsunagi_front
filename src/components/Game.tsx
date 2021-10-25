@@ -4,14 +4,8 @@ import styled from "styled-components";
 
 type GameProps = {
   questWords: string[];
-  maxWord: number;
   handleJudgeChange: (data: boolean) => void;
 };
-
-const StyledAnswerCount = styled.span`
-  font-size: 60px;
-  color: red;
-`;
 
 const StyledWord = styled.span`
   font-size: 50px;
@@ -28,9 +22,7 @@ const Game = (Prop: GameProps) => {
     <>
       <StyledQuestion>
         問題：<StyledWord>{Prop.questWords[0]}</StyledWord>　から　
-        <StyledWord>{Prop.questWords[1]} </StyledWord>までを{" "}
-        <StyledAnswerCount>{Prop.maxWord} </StyledAnswerCount>
-        回でつなげろ
+        <StyledWord>{Prop.questWords[1]} </StyledWord>までをつなげろ
       </StyledQuestion>
       <AnswersList
         handleJudgeChange={Prop.handleJudgeChange}
