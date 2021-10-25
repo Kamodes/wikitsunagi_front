@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TextField, Grid, Button } from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 type AnswerType = {
@@ -37,12 +37,35 @@ const ButtonStyle: React.CSSProperties = {
 };
 
 const AnswersList = (Prop: AnswerListProps) => {
+  //   const [numOfForm, setNumOfForm] = useState(1)
+  // const [inputs, setInputs] = useState<string[]>([])
+
+  // return (
+  //   <div>
+  //     {Array(numOfForm).fill(null).map((_, i) => (
+  //        <input key={i} value={inputs[i]} onChange={e => setInputs(e.target.value)}  />
+  //     ))}
+  //   </div>
+  // )
+  const [numOfForm, setNumOfForm] = useState(1);
+  const [inputs, setInputs] = useState<string[]>([]);
   const history = useHistory();
-  const { register, handleSubmit, watch } = useForm<AnswerType>({
+  const { register, handleSubmit } = useForm<AnswerType>({
     mode: "onSubmit",
     reValidateMode: "onChange",
   });
+  const addAnswer = () => {
+    setNumOfForm(numOfForm + 1);
+  };
+  const deleteAnswer = () => {
+    if (numOfForm === 1) {
+      console.log("これ以上回答は削除できません");
+    } else {
+      setNumOfForm(numOfForm - 1);
+    }
+  };
   const handleOnSubmit: SubmitHandler<AnswerType> = async (data) => {
+    console.log(inputs);
     console.log("dataは", data);
     async function getAnswer() {
       history.push("/Loading");
@@ -86,59 +109,28 @@ const AnswersList = (Prop: AnswerListProps) => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item>
-            <Grid container direction="column" spacing={2}>
+          {Array(numOfForm)
+            .fill(null)
+            .map((_, i) => (
               <Grid item>
-                <TextField
-                  label="2つ目の単語"
-                  placeholder="2番目の解答を入力してください"
-                  required={true}
-                  {...register("second")}
-                  variant="outlined"
-                  style={FormStyle}
-                ></TextField>
+                <Grid container direction="column" spacing={2}>
+                  <Grid item>
+                    <TextField
+                      variant="outlined"
+                      style={FormStyle}
+                      key={i}
+                      value={inputs[i]}
+                      onChange={(e) =>
+                        setInputs(inputs.splice(i, 1, e.target.value))
+                      }
+                    />
+                  </Grid>
+                  <Grid item>
+                    <i className="fas fa-arrow-down fa-2x"></i>
+                  </Grid>
+                </Grid>
               </Grid>
-              <Grid item>
-                <i className="fas fa-arrow-down fa-2x"></i>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Grid container direction="column" spacing={2}>
-              <Grid item>
-                <TextField
-                  label="3つ目の単語"
-                  placeholder="3番目の解答を入力してください"
-                  {...register("third")}
-                  variant="outlined"
-                  style={FormStyle}
-                  defaultValue=""
-                  required={true}
-                ></TextField>
-              </Grid>
-              <Grid item>
-                <i className="fas fa-arrow-down fa-2x"></i>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Grid container direction="column" spacing={2}>
-              <Grid item>
-                <TextField
-                  label="4つ目の単語"
-                  placeholder="4番目の解答を入力してください"
-                  {...register("forth")}
-                  variant="outlined"
-                  style={FormStyle}
-                  defaultValue=""
-                  required={true}
-                ></TextField>
-              </Grid>
-              <Grid item>
-                <i className="fas fa-arrow-down fa-2x"></i>
-              </Grid>
-            </Grid>
-          </Grid>
+            ))}
           <Grid item>
             <Grid container direction="column" spacing={2}>
               <Grid item>
@@ -153,6 +145,12 @@ const AnswersList = (Prop: AnswerListProps) => {
                 ></TextField>
               </Grid>
             </Grid>
+          </Grid>
+          <Grid item>
+            <Button onClick={addAnswer}>回答を追加</Button>
+          </Grid>
+          <Grid item>
+            <Button onClick={deleteAnswer}>回答を削除</Button>
           </Grid>
           <Grid item>
             <StyledButton
