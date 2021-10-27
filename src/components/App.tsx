@@ -60,26 +60,17 @@ function App() {
     });
     // さらに模範解答を受け取りmodelAnswerに代入する
     // axios.get('http://localhost:3000/result/' + questWord[0] + '/' + questWord[1])
-    //   .then(function (response) {
-    //     console.log(response);
-    //     setModelAnswer(response['data'])
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-    
+    axios.get('http://localhost:8000/api/suggestion/' + questWord[0] + '/' + questWord[1])
+      .then(function (response) {
+        console.log(response);
+        setModelAnswer(response['data'])
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     console.log("useEffectOK");
     return () => {};
   }, [answers]);
-
-  axios.get('http://localhost:3000/questions/show/contents?category=computer&date=20211009&num=2')
-  .then(function (response) {
-    console.log(response);
-    setQuestWord(response['data']['contents']);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
 
   return (
     <div className="App">
