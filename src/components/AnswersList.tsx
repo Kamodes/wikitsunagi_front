@@ -7,9 +7,6 @@ import axios from "axios";
 
 type AnswerType = {
   first: string;
-  second: string;
-  third: string;
-  forth: string;
   fifth: string;
 };
 
@@ -37,18 +34,11 @@ const ButtonStyle: React.CSSProperties = {
 };
 
 const AnswersList = (Prop: AnswerListProps) => {
-  //   const [numOfForm, setNumOfForm] = useState(1)
-  // const [inputs, setInputs] = useState<string[]>([])
-
-  // return (
-  //   <div>
-  //     {Array(numOfForm).fill(null).map((_, i) => (
-  //        <input key={i} value={inputs[i]} onChange={e => setInputs(e.target.value)}  />
-  //     ))}
-  //   </div>
-  // )
+  const firstWord = Prop.questWords[0];
+  const lastWord = Prop.questWords[1];
+  console.log("answer開始");
   const [numOfForm, setNumOfForm] = useState(1);
-  const [inputs, setInputs] = useState<string[]>([]);
+  const inputs = Array(numOfForm).fill(null);
   const history = useHistory();
   const { register, handleSubmit } = useForm<AnswerType>({
     mode: "onSubmit",
@@ -64,14 +54,16 @@ const AnswersList = (Prop: AnswerListProps) => {
       setNumOfForm(numOfForm - 1);
     }
   };
+
   const handleOnSubmit: SubmitHandler<AnswerType> = async (data) => {
-    console.log(inputs);
-    console.log("dataは", data);
+    inputs.unshift(firstWord);
+    inputs.push(lastWord);
+    console.log("inputsは", inputs);
     async function getAnswer() {
       history.push("/Loading");
       await axios
         .post("http://localhost:3000/questions/verify_answer", {
-          answer: data,
+          answer: inputs,
         })
         .then(function (response) {
           console.log(response);
@@ -101,7 +93,6 @@ const AnswersList = (Prop: AnswerListProps) => {
                   InputProps={{
                     readOnly: true,
                   }}
-                  {...register("first")}
                 ></TextField>
               </Grid>
               <Grid item>
@@ -120,9 +111,8 @@ const AnswersList = (Prop: AnswerListProps) => {
                       style={FormStyle}
                       key={i}
                       value={inputs[i]}
-                      onChange={(e) =>
-                        setInputs(inputs.splice(i, 1, e.target.value))
-                      }
+                      required={true}
+                      onChange={(e) => inputs.splice(i, 1, e.target.value)}
                     />
                   </Grid>
                   <Grid item>
@@ -135,7 +125,6 @@ const AnswersList = (Prop: AnswerListProps) => {
             <Grid container direction="column" spacing={2}>
               <Grid item>
                 <TextField
-                  {...register("fifth")}
                   variant="outlined"
                   style={FormStyle}
                   InputProps={{

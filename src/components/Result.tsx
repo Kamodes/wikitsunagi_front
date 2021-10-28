@@ -65,9 +65,11 @@ const Result = (props: ResultProps) => {
           <Grid item>{model[4]}</Grid>
           <Grid item>
             <Link to="/">
-              <Button variant="contained" size="large">
-                タイトルへ
-              </Button>
+              <ButtonStyle>
+                <Button variant="contained" size="large">
+                  タイトルへ
+                </Button>
+              </ButtonStyle>
             </Link>
           </Grid>
         </Grid>

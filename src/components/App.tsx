@@ -8,6 +8,7 @@ import Result from "./Result";
 import ButtonAppBar from "./modules/ButtonAppBar";
 import Footer from "./footer";
 import Page404 from "./Page404";
+import Error from "./Error";
 import axios from "axios";
 
 const initialQuestWord: string[] = ["京都大学", "ギター"];
@@ -21,6 +22,7 @@ const initialModelAnswer: string[] = [
 ];
 
 function App() {
+  console.log("App開始");
   const [questWord, setQuestWord] = useState(initialQuestWord);
   const [modelAnswer, setModelAnswer] = useState(initialModelAnswer);
   const [judge, setJudge] = useState(Boolean(true));
@@ -74,6 +76,7 @@ function App() {
               path="/Result"
               render={() => <Result judge={judge} modelAnswer={modelAnswer} />}
             />
+            <Route exact path="/Error" render={() => <Error />} />
             <Route component={Page404} />
           </Switch>
         </div>
