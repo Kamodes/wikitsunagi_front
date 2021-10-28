@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./CSS/App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Game from "./Game";
@@ -42,6 +42,18 @@ function App() {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    axios
+      .get("")
+      .then(function (response) {
+        console.log(response);
+        setModelAnswer(response["data"]["contents"]);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [questWord]);
 
   return (
     <div className="App">
