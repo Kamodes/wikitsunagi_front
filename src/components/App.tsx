@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./CSS/App.css";
+import "../CSS/App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Game from "./Game";
 import Title from "./Title";
@@ -29,8 +29,8 @@ function App() {
   const handleJudgeChange = (data: boolean) => {
     setJudge(data);
   };
-  const setQuestion = () => {
-    axios
+  const setQuestion = async () => {
+    await axios
       .get(
         "http://localhost:3000/questions/show/contents?category=computer&date=20211009&num=2"
       )
