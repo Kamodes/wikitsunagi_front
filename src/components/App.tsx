@@ -45,7 +45,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/result/suggestion/' + questWord[0] + '/' + questWord[1])
+      .get('http://localhost:3000/result/' + questWord[0] + '/' + questWord[1])
       .then(function (response) {
         console.log("ここまで", response["data"]["contents"])
         console.log(response);
