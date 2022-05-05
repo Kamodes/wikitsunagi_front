@@ -45,8 +45,9 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("")
+      .get('http://localhost:3000/result/suggestion/' + questWord[0] + '/' + questWord[1])
       .then(function (response) {
+        console.log("ここまで", response["data"]["contents"])
         console.log(response);
         setModelAnswer(response["data"]["contents"]);
       })
